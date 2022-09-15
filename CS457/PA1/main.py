@@ -15,3 +15,14 @@ def databaseExistenceCheck(db): # Checks if database exists
     return 1
   else:
     return 0
+  
+def tableExistenceCheck(t): # Checks if table exists
+  if t in subprocess.run(['ls', workingDB,  '|', 'grep', t], capture_output=True, text=True).stdout:
+    return 1
+  else:
+    return 0
+
+while (UserQuery != ".EXIT"):
+  UserQuery = input("AlexQL> ")
+  if (';' not in UserQuery and UserQuery != ".EXIT"): # Invalid command
+    print("Commands must end with ';'")
